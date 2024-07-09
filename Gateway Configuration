@@ -1,0 +1,16 @@
+# Azure Application Gateway Configuration
+
+1. Navigate to Azure Portal > Application Gateway > Create.
+2. Configure the basic settings:
+   - Name: MyAppGateway
+   - Region: East US
+3. Configure the front-end IP:
+   - Public IP address: Create new or select existing
+4. Configure the backend pool:
+   - Add your VM's private IP address.
+5. Configure routing rules:
+   - Listener: Basic listener on port 80
+   - Backend target: The backend pool created in the previous step
+6. Review and create the Application Gateway.
+
+Once created, test by accessing your domain (e.g., http://example.com).
