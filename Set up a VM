@@ -1,0 +1,22 @@
+# Azure CLI commands to create a VM
+
+# Create a resource group
+az group create --name MyResourceGroup --location eastus
+
+# Create a virtual network
+az network vnet create --resource-group MyResourceGroup --name MyVnet --address-prefix 10.0.0.0/16 --subnet-name MySubnet --subnet-prefix 10.0.0.0/24
+
+# Create a public IP address
+az network public-ip create --resource-group MyResourceGroup --name MyPublicIP
+
+# Create a network security group
+az network nsg create --resource-group MyResourceGroup --name MyNSG
+
+# Create a virtual network card and associate with public IP address and NSG
+az network nic create --resource-group MyResourceGroup --name MyNic --vnet-name MyVnet --subnet MySubnet --network-security-group MyNSG --public-ip-address MyPublicIP
+
+# Create a virtual machine
+az vm create --resource-group MyResourceGroup --name MyVM --nics MyNic --image UbuntuLTS --generate-ssh-keys
+
+# Open port 80 to allow web traffic to host
+az vm open-port --port 80 --resource-group MyResourceGroup --name MyVM
